@@ -98,6 +98,12 @@ class BlS21ClimateEntity(ClimateEntity):
     def target_temperature(self) -> Optional[float]:
         if self._client.device:
             return self._client.device.target_temperature
+            
+    @property
+    def extra_state_attributes(self):
+        return {
+            "outdoor_temp": self._client.device.current_intake_temperature,
+        }
 
     @property
     def target_temperature_step(self) -> Optional[float]:
